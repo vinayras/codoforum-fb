@@ -8,13 +8,15 @@ Replace your local version of facebook.php in the folder: sys/Ext/hybridauth/Hyb
 ## What is does?
 Existing code was replaced with following code at line 50 - 61. 
 
+Replace FORUM_URL with actual URL of your forum (including http)
+
 ```php
 		if ($this->token("access_token") || isset($_REQUEST["code"])) {
 			if($this->token("access_token")) {
 				$this->api->setAccessToken($this->token("access_token"));
 			} else if(
 				isset($_REQUEST["code"]) &&
-				$access_token_from_code = $this->api->getAccessTokenFromCode($_REQUEST["code"], "https://www.indcareer.com/forum/uni_login/authorize?hauth.done=Facebook")
+				$access_token_from_code = $this->api->getAccessTokenFromCode($_REQUEST["code"], "FORUM_URL/uni_login/authorize?hauth.done=Facebook")
 			) {
 				$this->api->setAccessToken($access_token_from_code);
 			}
